@@ -1,0 +1,40 @@
+1. Build the image -> Bare min OS + System packages + App run time + Code + dependencies
+2. Run the image -> port, name, background, other component urls, etc.
+
+Docker Installation:
+
+sudo dnf install -y dnf-plugins-core
+sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-b
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker $USER
+newgrp docker
+====================================
+
+
+docker ps -> running containers
+docker ps -a -> all containers
+docker images -> show the images in server
+docker pull image-name:version
+docker create image-name:version
+docker start container-id
+docker run image-name:version = pull + create + start
+docker rm container-id -> remove the container
+
+docker run -d
+docker run -p host-port:container-port
+docker run --name <container-name>
+docker stats -> show the resources consumed by containers
+docker inspect container-id
+docker stats
+
+Dockerfile -> declarative way of creating custom images by using docker instructions
+
+FROM -> should be 1st instruction, to refer base OS
+RUN -> used to configure image install packages, create users, etc. used at the time of building the image
+
+docker build -t url/username/image-name:version .
+docker login
+docker tag image-name:version username/image-name:version
+docker push username/image-name:version
